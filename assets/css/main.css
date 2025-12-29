@@ -1161,6 +1161,21 @@ section,
   margin-bottom: 0;
 }
 
+/* ===============================
+   NEW: Left-align content text
+   =============================== */
+.services .service-item p,
+.services .service-item ul,
+.services .service-item li {
+  text-align: left;
+}
+
+/* Optional: better list spacing */
+.services .service-item ul {
+  padding-left: 18px;
+  margin-bottom: 12px;
+}
+
 .services .service-item:hover {
   background: var(--accent-color);
   border-color: var(--accent-color);
@@ -1181,6 +1196,12 @@ section,
 .services .service-item:hover h3,
 .services .service-item:hover p {
   color: var(--contrast-color);
+}
+
+.services .service-item p,
+.services .service-item ul,
+.services .service-item li {
+  text-align: left;
 }
 
 /*--------------------------------------------------------------
