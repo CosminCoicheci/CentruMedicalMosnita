@@ -5,10 +5,3 @@
   command = "npm run build"
   publish = "."
   environment = { NODE_VERSION = "18" }
-
-# Only redirect /admin (no slash) to /admin/ so the CMS loads
-[[redirects]]
-  from = "/admin"
-  to = "/admin/"
-  status = 301
-  force = true
