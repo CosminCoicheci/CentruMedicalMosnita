@@ -6,7 +6,7 @@
   publish = "."
   environment = { NODE_VERSION = "18" }
 
-# Optional: redirect /admin to /admin/ for Decap CMS
+# Only redirect /admin (no slash) to /admin/ so the CMS loads
 [[redirects]]
   from = "/admin"
   to = "/admin/"
