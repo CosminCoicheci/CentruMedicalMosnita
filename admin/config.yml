@@ -24,7 +24,7 @@ collections:
         widget: list
         fields:
           - { label: Etichetă, name: label, widget: string }
-          - { label: Link (ex. #hero), name: href, widget: string }
+          - { label: "Link (ex. #hero)", name: href, widget: string }
       - label: Hero (banner principal)
         name: hero
         widget: object
@@ -102,7 +102,7 @@ collections:
         fields:
           - { label: Clasă icon (ex. fas fa-heartbeat), name: icon, widget: string }
           - { label: Titlu serviciu, name: title, widget: string }
-          - { label: Conținut (HTML: paragrafe, listă cu <ul><li>), name: body, widget: text }
+          - { label: "Conținut (HTML: paragrafe, listă cu ul/li)", name: body, widget: text }
 
   - name: doctors
     label: Echipa medicală (doctori)
