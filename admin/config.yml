@@ -18,80 +18,80 @@ collections:
         label: Setări site
         file: content/site.yml
         fields:
-      - { label: Titlu pagină, name: title, widget: string }
-      - { label: Nume site, name: sitename, widget: string }
-      - { label: Telefon 1, name: phone1, widget: string }
-      - { label: Telefon 2, name: phone2, widget: string }
-      - label: Meniu navigare
-        name: nav
-        widget: list
-        fields:
-          - { label: Etichetă, name: label, widget: string }
-          - { label: "Link (ex. #hero)", name: href, widget: string }
-      - label: Hero (banner principal)
-        name: hero
-        widget: object
-        fields:
-          - { label: Titlu, name: headline, widget: string }
-          - { label: Subtitlu, name: subtitle, widget: string }
-          - { label: Imagine fundal, name: heroImage, widget: image }
-          - { label: Titlu "De ce să ne alegeți?", name: whyTitle, widget: string }
-          - { label: Text "De ce să ne alegeți?", name: whyBody, widget: text }
-          - { label: Text buton "Learn More", name: learnMoreLabel, widget: string }
-          - label: Cele 3 casete cu iconițe
-            name: iconBoxes
-            widget: list
-            max: 3
-            fields:
-              - { label: Clasă icon (ex. bi bi-clipboard-data), name: icon, widget: string }
-              - { label: Titlu, name: title, widget: string }
-              - { label: Text, name: text, widget: text }
-      - label: Despre noi
-        name: about
-        widget: object
-        fields:
-          - { label: Titlu, name: title, widget: string }
-          - { label: Paragraf intro, name: intro, widget: text }
-          - { label: Imagine, name: image, widget: image }
-          - label: Elemente listă
-            name: items
-            widget: list
-            fields:
-              - { label: Clasă icon (ex. fa-solid fa-vial-circle-check), name: icon, widget: string }
-              - { label: Titlu, name: title, widget: string }
-              - { label: Text, name: text, widget: text }
-      - label: Contact
-        name: contact
-        widget: object
-        fields:
-          - { label: Titlu, name: title, widget: string }
-          - { label: Descriere (adresă scurtă), name: description, widget: string }
-          - { label: URL iframe Google Maps (src), name: mapSrc, widget: string }
-      - { label: Email formular contact (opțional), name: formReceivingEmail, widget: string, required: false }
-      - label: Footer
-        name: footer
-        widget: object
-        fields:
+          - { label: Titlu pagină, name: title, widget: string }
           - { label: Nume site, name: sitename, widget: string }
-          - { label: Adresă (2 rânduri ok), name: address, widget: text }
-          - { label: Telefon fix, name: phoneFix, widget: string }
-          - { label: Telefon mobil, name: phoneMobil, widget: string }
-          - { label: Titlu coloană 1, name: linksTitle1, widget: string }
-          - label: Linkuri coloană 1
-            name: links1
+          - { label: Telefon 1, name: phone1, widget: string }
+          - { label: Telefon 2, name: phone2, widget: string }
+          - label: Meniu navigare
+            name: nav
             widget: list
             fields:
               - { label: Etichetă, name: label, widget: string }
-              - { label: URL, name: href, widget: string }
-          - { label: Titlu coloană 2, name: linksTitle2, widget: string }
-          - label: Linkuri coloană 2
-            name: links2
-            widget: list
+              - { label: "Link (ex. #hero)", name: href, widget: string }
+          - label: Hero (banner principal)
+            name: hero
+            widget: object
             fields:
-              - { label: Etichetă, name: label, widget: string }
-              - { label: URL, name: href, widget: string }
-          - { label: Copyright (text complet), name: copyright, widget: string }
-          - { label: Credits (poate conține HTML), name: credits, widget: text }
+              - { label: Titlu, name: headline, widget: string }
+              - { label: Subtitlu, name: subtitle, widget: string }
+              - { label: Imagine fundal, name: heroImage, widget: image }
+              - { label: Titlu "De ce să ne alegeți?", name: whyTitle, widget: string }
+              - { label: Text "De ce să ne alegeți?", name: whyBody, widget: text }
+              - { label: Text buton "Learn More", name: learnMoreLabel, widget: string }
+              - label: Cele 3 casete cu iconițe
+                name: iconBoxes
+                widget: list
+                max: 3
+                fields:
+                  - { label: Clasă icon (ex. bi bi-clipboard-data), name: icon, widget: string }
+                  - { label: Titlu, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+          - label: Despre noi
+            name: about
+            widget: object
+            fields:
+              - { label: Titlu, name: title, widget: string }
+              - { label: Paragraf intro, name: intro, widget: text }
+              - { label: Imagine, name: image, widget: image }
+              - label: Elemente listă
+                name: items
+                widget: list
+                fields:
+                  - { label: Clasă icon (ex. fa-solid fa-vial-circle-check), name: icon, widget: string }
+                  - { label: Titlu, name: title, widget: string }
+                  - { label: Text, name: text, widget: text }
+          - label: Contact
+            name: contact
+            widget: object
+            fields:
+              - { label: Titlu, name: title, widget: string }
+              - { label: Descriere (adresă scurtă), name: description, widget: string }
+              - { label: URL iframe Google Maps (src), name: mapSrc, widget: string }
+          - { label: Email formular contact (opțional), name: formReceivingEmail, widget: string, required: false }
+          - label: Footer
+            name: footer
+            widget: object
+            fields:
+              - { label: Nume site, name: sitename, widget: string }
+              - { label: Adresă (2 rânduri ok), name: address, widget: text }
+              - { label: Telefon fix, name: phoneFix, widget: string }
+              - { label: Telefon mobil, name: phoneMobil, widget: string }
+              - { label: Titlu coloană 1, name: linksTitle1, widget: string }
+              - label: Linkuri coloană 1
+                name: links1
+                widget: list
+                fields:
+                  - { label: Etichetă, name: label, widget: string }
+                  - { label: URL, name: href, widget: string }
+              - { label: Titlu coloană 2, name: linksTitle2, widget: string }
+              - label: Linkuri coloană 2
+                name: links2
+                widget: list
+                fields:
+                  - { label: Etichetă, name: label, widget: string }
+                  - { label: URL, name: href, widget: string }
+              - { label: Copyright (text complet), name: copyright, widget: string }
+              - { label: Credits (poate conține HTML), name: credits, widget: text }
 
   - name: services
     label: Servicii medicale
@@ -100,15 +100,15 @@ collections:
         label: Servicii
         file: content/services.yml
         fields:
-      - { label: Titlu secțiune, name: title, widget: string }
-      - { label: Subtitlu, name: subtitle, widget: string }
-      - label: Lista servicii
-        name: services
-        widget: list
-        fields:
-          - { label: Clasă icon (ex. fas fa-heartbeat), name: icon, widget: string }
-          - { label: Titlu serviciu, name: title, widget: string }
-          - { label: "Conținut (HTML: paragrafe, listă cu ul/li)", name: body, widget: text }
+          - { label: Titlu secțiune, name: title, widget: string }
+          - { label: Subtitlu, name: subtitle, widget: string }
+          - label: Lista servicii
+            name: services
+            widget: list
+            fields:
+              - { label: Clasă icon (ex. fas fa-heartbeat), name: icon, widget: string }
+              - { label: Titlu serviciu, name: title, widget: string }
+              - { label: "Conținut (HTML: paragrafe, listă cu ul/li)", name: body, widget: text }
 
   - name: doctors
     label: Echipa medicală (doctori)
@@ -117,15 +117,15 @@ collections:
         label: Doctori
         file: content/doctors.yml
         fields:
-      - { label: Titlu secțiune, name: title, widget: string }
-      - label: Doctori / personal
-        name: doctors
-        widget: list
-        fields:
-          - { label: Nume, name: name, widget: string }
-          - { label: Rol (ex. Medic specialist), name: role, widget: string }
-          - { label: Descriere (ex. Pediatrie), name: description, widget: string, required: false }
-          - { label: Poză, name: image, widget: image }
+          - { label: Titlu secțiune, name: title, widget: string }
+          - label: Doctori / personal
+            name: doctors
+            widget: list
+            fields:
+              - { label: Nume, name: name, widget: string }
+              - { label: Rol (ex. Medic specialist), name: role, widget: string }
+              - { label: Descriere (ex. Pediatrie), name: description, widget: string, required: false }
+              - { label: Poză, name: image, widget: image }
 
   - name: testimonials
     label: Testimoniale
@@ -134,16 +134,16 @@ collections:
         label: Testimoniale
         file: content/testimonials.yml
         fields:
-      - { label: Titlu secțiune, name: title, widget: string }
-      - { label: Intro (scurt), name: intro, widget: string }
-      - label: Testimoniale
-        name: testimonials
-        widget: list
-        fields:
-          - { label: Autor, name: author, widget: string }
-          - { label: Rol (ex. Project Manager), name: role, widget: string }
-          - { label: Citat, name: quote, widget: text }
-          - { label: Poză, name: image, widget: image }
+          - { label: Titlu secțiune, name: title, widget: string }
+          - { label: Intro (scurt), name: intro, widget: string }
+          - label: Testimoniale
+            name: testimonials
+            widget: list
+            fields:
+              - { label: Autor, name: author, widget: string }
+              - { label: Rol (ex. Project Manager), name: role, widget: string }
+              - { label: Citat, name: quote, widget: text }
+              - { label: Poză, name: image, widget: image }
 
   - name: gallery
     label: Galerie
@@ -152,11 +152,11 @@ collections:
         label: Galerie
         file: content/gallery.yml
         fields:
-      - { label: Titlu secțiune, name: title, widget: string }
-      - { label: Descriere, name: description, widget: string }
-      - label: Imagini
-        name: images
-        widget: list
-        fields:
-          - { label: Imagine, name: path, widget: image }
-          - { label: Caption (opțional), name: caption, widget: string, required: false }
+          - { label: Titlu secțiune, name: title, widget: string }
+          - { label: Descriere, name: description, widget: string }
+          - label: Imagini
+            name: images
+            widget: list
+            fields:
+              - { label: Imagine, name: path, widget: image }
+              - { label: Caption (opțional), name: caption, widget: string, required: false }
