@@ -1,0 +1,37 @@
+title: Echipa medicală
+
+doctors:
+  - name: Dr. Maria Cojocariu
+    role: Fondator și Manager Centru Medical
+    description: Medic specialist medicină de familie
+    image: assets/img/doctors/maria.jpg
+
+  - name: Dr. Anca-Lavinia Babeț-Bețianu
+    role: Medic specialist
+    description: Pediatrie
+    image: assets/img/doctors/lavinia.jpg
+
+  - name: Dr. Ramona Fratilă
+    role: Medic primar
+    description: Medicină internă
+    image: assets/img/doctors/ramona.jpg
+
+  - name: Dr. Mădălina Stoica
+    role: Medic specialist
+    description: Obstetrică-Ginecologie
+    image: assets/img/doctors/madalina.jpg
+
+  - name: Dr. Dora Maria Ponea
+    role: Medic specialist
+    description: Chirurgie generală
+    image: assets/img/doctors/dora.jpg
+
+  - name: Dr. Raul Zoller
+    role: Medic specialist
+    description: Chirurgie generală
+    image: assets/img/doctors/raul.jpg
+
+  - name: Daniela Prodan
+    role: Asistent medical
+    description: ""
+    image: assets/img/doctors/daniela.jpg

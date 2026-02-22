@@ -1,0 +1,100 @@
+title: Servicii medicale
+subtitle: Consultațiile se fac pe bază de programare.
+
+services:
+  - icon: fas fa-heartbeat
+    title: Medicină de familie
+    body: |
+      <p><strong>Program cabinet:</strong></p>
+      <ul>
+        <li>Luni, Miercuri: 13:00 – 19:00</li>
+        <li>Marți, Joi, Vineri: 08:30 – 14:30</li>
+      </ul>
+      <p><strong>Consultații la domiciliu:</strong></p>
+      <ul>
+        <li>Luni, Miercuri: 19:00 – 20:00</li>
+        <li>Marți, Joi, Vineri: 14:30 – 15:30</li>
+      </ul>
+      <p><strong>Consultațiile la domiciliu se efectuează pentru:</strong></p>
+      <ul>
+        <li>Pacienți nedeplasabili</li>
+        <li>Imobilizați la pat</li>
+        <li>Nou-născuți</li>
+        <li>Leuze</li>
+        <li>Urgențe medico-chirurgicale</li>
+      </ul>
+
+  - icon: fas fa-baby
+    title: Pediatrie
+    body: |
+      <p><strong>Program cabinet:</strong></p>
+      <ul>
+        <li>Luni, Miercuri: 13:00 – 19:30</li>
+        <li>Marți, Joi, Vineri: 08:30 – 15:30</li>
+      </ul>
+      <p><strong>Consultații contra cost:</strong></p>
+      <ul>
+        <li>La cabinet: 250 RON</li>
+        <li>La domiciliu: 300 RON</li>
+      </ul>
+
+  - icon: fas fa-stethoscope
+    title: Medicină internă
+    body: |
+      <p><strong>Servicii oferite:</strong></p>
+      <ul>
+        <li>Consult de specialitate</li>
+        <li>Interpretarea investigațiilor paraclinice</li>
+        <li>Monitorizarea evoluției clinice</li>
+        <li>Stabilirea și ajustarea tratamentelor</li>
+        <li>Evaluarea preoperatorie și coordonarea îngrijirii interdisciplinare</li>
+        <li>Ecografie abdominală generală</li>
+        <li>Monitorizarea tensiunii arteriale (Holter TA)</li>
+        <li>Electrocardiografie (EKG)</li>
+        <li>Monitorizare glicemică</li>
+        <li>Evaluarea funcției respiratorii (spirometrie)</li>
+      </ul>
+
+  - icon: fas fa-female
+    title: Obstetrică-Ginecologie
+    body: |
+      <p><strong>Servicii oferite:</strong></p>
+      <ul>
+        <li>Consult Obstetrică-Ginecologie: 250 RON</li>
+        <li>Control Obstetrică-Ginecologie: 150 RON</li>
+        <li>Consult senologic (mamar): 150 RON</li>
+        <li>Ecografie pelvis: 200 RON</li>
+        <li>Ecografie confirmare sarcină: 200 RON</li>
+        <li>Ecografie sarcină trimestrul I, II, III: 250 RON</li>
+        <li>Test Babeș-Papanicolau în mediu uscat: 100 RON</li>
+        <li>Montare sterilet: 800 RON</li>
+        <li>Extragere sterilet: 150 RON</li>
+      </ul>
+
+  - icon: fas fa-user-md
+    title: Chirgurgie generală
+    body: |
+      <p><strong>Servicii oferite:</strong></p>
+      <ul>
+        <li>Consult chirurgical</li>
+        <li>Abcese</li>
+        <li>Flegmoane</li>
+        <li>Excizie chiste sebacee</li>
+        <li>Unghie încarnată</li>
+        <li>Lipoame</li>
+        <li>Excizie sau cauterizare formațiuni tumorale cutanate</li>
+        <li>Incizie sinus pilonidal</li>
+        <li>Suprimare fire de sutură și capse</li>
+        <li>Pansamente locale</li>
+        <li>Extragere corp străin superficial</li>
+        <li>Sutura plăgilor</li>
+        <li>Tratamentul complicațiilor plăgilor chirurgicale</li>
+        <li>Panariții</li>
+        <li>Proctologie: diagnostic și tratament conservator</li>
+      </ul>
+
+  - icon: fas fa-notes-medical
+    title: În curând
+    body: |
+      <p>Pneumologie pediatrică</p>
+      <p>Psihiatrie pediatrică</p>

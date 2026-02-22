@@ -1,0 +1,11 @@
+{
+  "name": "centru-medical-mosnita",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

@@ -1,0 +1,14 @@
+# Netlify build configuration for Centrul Medical
+# Build runs the merge script; publish directory is the repo root (index.html + assets are here).
+
+[build]
+  command = "npm run build"
+  publish = "."
+  environment = { NODE_VERSION = "18" }
+
+# Optional: redirect /admin to /admin/ for Decap CMS
+[[redirects]]
+  from = "/admin"
+  to = "/admin/"
+  status = 301
+  force = true

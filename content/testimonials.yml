@@ -1,0 +1,8 @@
+title: Testimoniale
+intro: Ce spun pacienții noștri despre experiența lor la centrul nostru medical.
+
+testimonials:
+  - author: Coicheci Cosmin
+    role: Project Manager
+    quote: Am fost întotdeauna îngrijit cu profesionalism și atenție la detalii. Echipa medicală este foarte prietenoasă și răspunde la toate întrebările mele, iar consultațiile sunt întotdeauna bine explicate. Mă simt în siguranță știind că sănătatea mea este pe mâini bune.
+    image: assets/img/testimonials/Cos_picture.jpg
