@@ -13,8 +13,11 @@ locale: "ro"
 collections:
   - name: site
     label: Setări site (header, hero, despre, contact, footer)
-    file: content/site.yml
-    fields:
+    files:
+      - name: site
+        label: Setări site
+        file: content/site.yml
+        fields:
       - { label: Titlu pagină, name: title, widget: string }
       - { label: Nume site, name: sitename, widget: string }
       - { label: Telefon 1, name: phone1, widget: string }
@@ -92,8 +95,11 @@ collections:
 
   - name: services
     label: Servicii medicale
-    file: content/services.yml
-    fields:
+    files:
+      - name: services
+        label: Servicii
+        file: content/services.yml
+        fields:
       - { label: Titlu secțiune, name: title, widget: string }
       - { label: Subtitlu, name: subtitle, widget: string }
       - label: Lista servicii
@@ -106,8 +112,11 @@ collections:
 
   - name: doctors
     label: Echipa medicală (doctori)
-    file: content/doctors.yml
-    fields:
+    files:
+      - name: doctors
+        label: Doctori
+        file: content/doctors.yml
+        fields:
       - { label: Titlu secțiune, name: title, widget: string }
       - label: Doctori / personal
         name: doctors
@@ -120,8 +129,11 @@ collections:
 
   - name: testimonials
     label: Testimoniale
-    file: content/testimonials.yml
-    fields:
+    files:
+      - name: testimonials
+        label: Testimoniale
+        file: content/testimonials.yml
+        fields:
       - { label: Titlu secțiune, name: title, widget: string }
       - { label: Intro (scurt), name: intro, widget: string }
       - label: Testimoniale
@@ -135,8 +147,11 @@ collections:
 
   - name: gallery
     label: Galerie
-    file: content/gallery.yml
-    fields:
+    files:
+      - name: gallery
+        label: Galerie
+        file: content/gallery.yml
+        fields:
       - { label: Titlu secțiune, name: title, widget: string }
       - { label: Descriere, name: description, widget: string }
       - label: Imagini
