@@ -610,11 +610,11 @@ Moșnița Veche, 307287</p>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
     if (window.netlifyIdentity) {
+      var hash = window.location.hash || "";
+      var hasInvite = hash.indexOf("invite_token=") !== -1;
+      var hasRecovery = hash.indexOf("recovery_token=") !== -1;
+      var hasConfirmation = hash.indexOf("confirmation_token=") !== -1;
       window.netlifyIdentity.on("init", function (user) {
-        var hash = window.location.hash || "";
-        var hasInvite = hash.indexOf("invite_token=") !== -1;
-        var hasRecovery = hash.indexOf("recovery_token=") !== -1;
-        var hasConfirmation = hash.indexOf("confirmation_token=") !== -1;
         if (hasInvite) {
           window.netlifyIdentity.open("signup");
         } else if (hasRecovery || hasConfirmation) {
