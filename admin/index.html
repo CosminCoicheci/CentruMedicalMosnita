@@ -11,6 +11,15 @@
     <script>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on("init", function (user) {
+          var hash = window.location.hash || "";
+          var hasInvite = hash.indexOf("invite_token=") !== -1;
+          var hasRecovery = hash.indexOf("recovery_token=") !== -1;
+          var hasConfirmation = hash.indexOf("confirmation_token=") !== -1;
+          if (hasInvite) {
+            window.netlifyIdentity.open("signup");
+          } else if (hasRecovery || hasConfirmation) {
+            window.netlifyIdentity.open();
+          }
           if (!user) {
             window.netlifyIdentity.on("login", function () {
               document.location.href = "/admin/";
