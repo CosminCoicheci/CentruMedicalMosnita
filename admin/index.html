@@ -7,13 +7,18 @@
     <title>Administrare Centrul Medical</title>
   </head>
   <body>
+    <script>
+      // Capture hash before the widget potentially clears it.
+      window.__netlifyInitialHash = window.location.hash || "";
+    </script>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       if (window.netlifyIdentity) {
-        var hash = window.location.hash || "";
+        var hash = window.__netlifyInitialHash || "";
         var hasInvite = hash.indexOf("invite_token=") !== -1;
         var hasRecovery = hash.indexOf("recovery_token=") !== -1;
         var hasConfirmation = hash.indexOf("confirmation_token=") !== -1;
+
         window.netlifyIdentity.on("init", function (user) {
           if (hasInvite) {
             window.netlifyIdentity.open("signup");
@@ -26,6 +31,7 @@
             });
           }
         });
+
         window.netlifyIdentity.init();
       }
     </script>
