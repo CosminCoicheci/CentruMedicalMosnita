@@ -20,7 +20,7 @@ const SRC_DIR = path.join(ROOT, 'src');
 const OUT_INDEX = path.join(ROOT, 'index.html');
 
 const client = createClient({
-  projectId: process.env.SANITY_PROJECT_ID || 'YOUR_PROJECT_ID',
+  projectId: process.env.SANITY_PROJECT_ID || 'ycekroyx',
   dataset: process.env.SANITY_DATASET || 'production',
   useCdn: false,
   apiVersion: '2024-01-01',
