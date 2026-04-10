@@ -32,6 +32,11 @@ function urlFor(source) {
   return builder.image(source).url();
 }
 
+// Resolves a Sanity image asset reference to a URL, or returns '' if absent.
+function resolveImageUrl(imageField) {
+  return imageField ? escapeHtml(urlFor(imageField)) : '';
+}
+
 function escapeHtml(s) {
   if (s == null) return '';
   return String(s)
@@ -122,7 +127,7 @@ function buildDoctorsItems(doctors) {
       const descHtml = doc.description
         ? `<p>${escapeHtml(doc.description)}</p>`
         : '';
-      const imageUrl = doc.image ? escapeHtml(urlFor(doc.image)) : '';
+      const imageUrl = resolveImageUrl(doc.image);
       return `
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="${delay}">
             <div class="team-member d-flex align-items-start">
@@ -143,7 +148,7 @@ function buildTestimonialsItems(testimonials) {
   return testimonials
     .map(
       (t) => {
-        const imageUrl = t.image ? escapeHtml(urlFor(t.image)) : '';
+        const imageUrl = resolveImageUrl(t.image);
         return `
                 <div class="swiper-slide">
                   <div class="testimonial-item">
@@ -174,7 +179,7 @@ function buildGalleryImages(images) {
   return images
     .map(
       (img) => {
-        const imageUrl = img.path ? escapeHtml(urlFor(img.path)) : '';
+        const imageUrl = resolveImageUrl(img.path);
         return `
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
@@ -211,8 +216,8 @@ async function main() {
   const aboutIntro = (about.intro || '').replace(/\n/g, ' ');
   const footerAddress = nl2br(footer.address || '');
 
-  const heroImageUrl = hero.heroImage ? escapeHtml(urlFor(hero.heroImage)) : '';
-  const aboutImageUrl = about.image ? escapeHtml(urlFor(about.image)) : '';
+  const heroImageUrl = resolveImageUrl(hero.heroImage);
+  const aboutImageUrl = resolveImageUrl(about.image);
 
   const navItems = buildNavItems(site && site.nav);
   const iconBoxes = buildIconBoxes(hero.iconBoxes);
