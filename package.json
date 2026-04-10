@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node build.js"
   },
-  "devDependencies": {
-    "js-yaml": "^4.1.0"
+  "dependencies": {
+    "@sanity/client": "^6.0.0",
+    "@sanity/image-url": "^1.0.0"
   }
 }
