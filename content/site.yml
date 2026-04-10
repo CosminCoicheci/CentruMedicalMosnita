@@ -1,10 +1,7 @@
-# Site & header
 title: Centrul Medical Mosnita
 sitename: Centrul Medical Dr. Cojocariu
-phone1: "0771 529 675"
-phone2: "0256 800 180"
-
-# Navigation (label, href)
+phone1: 0771 529 675
+phone2: 0256 800 180
 nav:
   - label: Acasă
     href: "#hero"
@@ -16,67 +13,77 @@ nav:
     href: "#doctors"
   - label: Contact
     href: "#contact"
-
-# Hero
 hero:
   headline: Bine ați venit!
   subtitle: Îngrijire medicală de încredere, aproape de tine.
   heroImage: assets/img/hero-bg.jpg
   whyTitle: De ce să ne alegeți?
-  whyBody: |
-    Echipa noastră este formată din cadre medicale cu experiență, dedicate îngrijirii corecte și
+  whyBody: >
+    Echipa noastră este formată din cadre medicale cu experiență, dedicate
+    îngrijirii corecte și
+
     responsabile a fiecărui pacient, indiferent de vârstă.
+
     Oferim servicii medicale adaptate nevoilor copiilor, părinților și vârstnicilor, într-un singur loc,
+
     într-un mediu sigur și prietenos.
+
     Punem accent pe o relație calmă și empatică cu cei mici, pentru ca fiecare consultație să fie o
+
     experiență cât mai confortabilă.
+
     Credem într-o relație bazată pe încredere, transparență și comunicare clară între medic și pacient.
   learnMoreLabel: Learn More
   iconBoxes:
     - icon: bi bi-clipboard-data
       title: Medicină de familie la standarde înalte
-      text: Servicii medicale moderne pentru întreaga familie, cu grijă reală pentru sănătatea și siguranța fiecărui pacient.
+      text: Servicii medicale moderne pentru întreaga familie, cu grijă reală pentru
+        sănătatea și siguranța fiecărui pacient.
     - icon: bi bi-gem
       title: Îngrijire medicală atentă pentru copii și părinți
-      text: Punem accent pe prevenție, diagnostic corect și tratament personalizat, într-o atmosferă calmă și prietenoasă
+      text: Punem accent pe prevenție, diagnostic corect și tratament personalizat,
+        într-o atmosferă calmă și prietenoasă
     - icon: bi bi-inboxes
       title: Excelență în îngrijirea medicală pentru întreaga familie
-      text: Oferim servicii medicale complete pentru copii și adulți, într-un mediu sigur, modern și bazat pe respect față de pacient.
-
-# About
+      text: Oferim servicii medicale complete pentru copii și adulți, într-un mediu
+        sigur, modern și bazat pe respect față de pacient.
 about:
   title: Despre noi
-  intro: |
-    Centrul medical Dr. Cojocariu oferă servicii medicale de înaltă calitate în domeniul medicinei de familie,
+  intro: >
+    Centrul medical Dr. Cojocariu oferă servicii medicale de înaltă calitate în
+    domeniul medicinei de familie,
+
     adresându-se atât copiilor, cât și adulților.
   image: assets/img/gallery/centru_medical_exterior.jpg
   items:
     - icon: fa-solid fa-vial-circle-check
       title: Sănătatea voastră, prioritatea noastră
-      text: Punem pacientul pe primul loc și oferim îngrijire medicală atentă, adaptată nevoilor fiecăruia.
+      text: Punem pacientul pe primul loc și oferim îngrijire medicală atentă,
+        adaptată nevoilor fiecăruia.
     - icon: fa-solid fa-pump-medical
       title: Servicii medicale decontate prin Casa de Sănătate
-      text: Asigurăm acces la consultații și investigații medicale decontate, în baza biletului de trimitere.
+      text: Asigurăm acces la consultații și investigații medicale decontate, în baza
+        biletului de trimitere.
     - icon: fa-solid fa-heart-circle-xmark
       title: O echipă medicală în care poți avea încredere
-      text: Medicii noștri sunt profesioniști cu experiență, dedicați actului medical și relației cu pacientul.
-
-# Contact section
+      text: Medicii noștri sunt profesioniști cu experiență, dedicați actului medical
+        și relației cu pacientul.
 contact:
   title: Contact
-  description: Ne găsiți în Moșnița Veche, pe strada Scaramouch nr. 40, cu acces din zona Lidl, de pe Drumul Boilor.
-  mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2647.201428068401!2d21.311593776120212!3d45.731075671079545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47455ffd24cca1cf%3A0xa5e1780ce0589cdf!2sCabinet%20Medical%20Medicina%20de%20Familie%20Dr.%20Cojocariu%20Maria!5e1!3m2!1sen!2sro!4v1766009182815!5m2!1sen!2sro"
-
-# Form recipient (optional - for PHP forms if used elsewhere)
+  description: Ne găsiți în Moșnița Veche, strada Scaramouch nr. 40, cu acces din
+    zona Lidl, de pe Drumul Boilor.
+  mapSrc: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2647.201428068401!2d21.311593776120212!3d45.731075671079545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47455ffd24cca1cf%3A0xa5e1780ce0589cdf!2sCabinet%20Medical%20Medicina%20de%20Familie%20Dr.%20Cojocariu%20Maria!5e1!3m2!1sen!2sro!4v1766009182815!5m2!1sen!2sro
 formReceivingEmail: contact@example.com
-
-# Footer
 footer:
-  sitename: Centrul Medical Dr. Cojocariu
-  address: "str. Scaramouch nr. 40\nMoșnița Veche, 307287"
-  phoneFix: "0356 800 180"
-  phoneMobil: "0771 296 675"
+  phoneFix: 0356 800 180
+  copyright: © Copyright Cabinet Medical Mosnita All Rights Reserved
   linksTitle1: Linkuri utile
+  sitename: Centrul Medical Dr. Cojocariu
+  linksTitle2: Serviciile noastre
+  address: |-
+    str. Scaramouch nr. 40
+    Moșnița Veche, 307287
+  phoneMobil: 0771 296 675
   links1:
     - label: Acasă
       href: "#"
@@ -84,7 +91,6 @@ footer:
       href: "#"
     - label: Servicii
       href: "#"
-  linksTitle2: Serviciile noastre
   links2:
     - label: Medicină de familie
       href: "#"
@@ -96,5 +102,4 @@ footer:
       href: "#"
     - label: Chirurgie generală
       href: "#"
-  copyright: "© Copyright Cabinet Medical Mosnita All Rights Reserved"
-  credits: 'Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>'
+  credits: Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
