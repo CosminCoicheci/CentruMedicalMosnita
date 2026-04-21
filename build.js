@@ -207,6 +207,25 @@ async function main() {
   const testimonialsData = await client.fetch(`*[_type == "testimonialsPage"][0]`);
   const galleryData = await client.fetch(`*[_type == "galleryPage"][0]`);
 
+  // Fail fast so CI/Netlify does not deploy an empty site if dataset access is missing.
+  const missingDocs = [];
+  if (!site) missingDocs.push('site');
+  if (!servicesData) missingDocs.push('servicesPage');
+  if (!doctorsData) missingDocs.push('doctorsPage');
+  if (!testimonialsData) missingDocs.push('testimonialsPage');
+  if (!galleryData) missingDocs.push('galleryPage');
+
+  if (missingDocs.length) {
+    const tokenSet = Boolean(process.env.SANITY_TOKEN);
+    throw new Error(
+      [
+        `Missing required Sanity documents: ${missingDocs.join(', ')}`,
+        `Using projectId=${client.config().projectId}, dataset=${client.config().dataset}, tokenSet=${tokenSet}`,
+        'If your dataset is private, set SANITY_TOKEN (read token) in local env and Netlify env for all deploy contexts.',
+      ].join('\n')
+    );
+  }
+
   const hero = (site && site.hero) || {};
   const about = (site && site.about) || {};
   const contact = (site && site.contact) || {};
