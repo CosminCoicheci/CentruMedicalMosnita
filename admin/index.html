@@ -1,40 +1,30 @@
 <!DOCTYPE html>
 <html lang="ro">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex" />
-    <title>Administrare Centrul Medical</title>
-  </head>
-  <body>
-    <script>
-      // Capture hash before the widget potentially clears it.
-      window.__netlifyInitialHash = window.location.hash || "";
-    </script>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-      if (window.netlifyIdentity) {
-        var hash = window.__netlifyInitialHash || "";
-        var hasInvite = hash.indexOf("invite_token=") !== -1;
-        var hasRecovery = hash.indexOf("recovery_token=") !== -1;
-        var hasConfirmation = hash.indexOf("confirmation_token=") !== -1;
-
-        window.netlifyIdentity.on("init", function (user) {
-          if (hasInvite) {
-            window.netlifyIdentity.open("signup");
-          } else if (hasRecovery || hasConfirmation) {
-            window.netlifyIdentity.open();
-          }
-          if (!user) {
-            window.netlifyIdentity.on("login", function () {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-
-        window.netlifyIdentity.init();
-      }
-    </script>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Administrare — Centrul Medical Moșnița</title>
+  <style>
+    body { font-family: sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #f5f5f5; }
+    .box { background: white; padding: 2rem 3rem; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.1); text-align: center; max-width: 480px; }
+    h1 { color: #1a73e8; }
+    a.btn { display: inline-block; margin-top: 1rem; padding: .75rem 2rem; background: #1a73e8; color: white; border-radius: 4px; text-decoration: none; font-weight: bold; }
+    a.btn:hover { background: #1558b0; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Administrare site</h1>
+    <p>Conținutul site-ului este gestionat prin <strong>Sanity Studio</strong>.</p>
+    <p>Accesați panoul de administrare la adresa de mai jos:</p>
+    <!-- Update this URL after running `npm run deploy` inside the sanity/ folder (step 10 in SANITY-SETUP.md) -->
+    <a class="btn" href="https://centru-medical-mosnita.sanity.studio/" target="_blank" rel="noopener">
+      Deschide Sanity Studio →
+    </a>
+    <p style="margin-top:1.5rem; font-size:.85rem; color:#666;">
+      Dacă nu aveți acces, contactați administratorul site-ului.
+    </p>
+  </div>
+</body>
 </html>

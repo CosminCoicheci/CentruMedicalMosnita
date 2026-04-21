@@ -1,21 +1,40 @@
 /**
- * Build script: merges content YAML files with the HTML template and outputs index.html.
+ * Build script: fetches content from Sanity CMS and merges into the HTML template, outputting index.html.
  * Run: node build.js
+ *
+ * Required environment variables:
+ *   SANITY_PROJECT_ID — your Sanity project ID
+ *   SANITY_DATASET    — dataset name (default: "production")
+ *   SANITY_TOKEN      — (optional) read token for private datasets
+ *
+ * Image URLs are resolved via @sanity/image-url using the Sanity image asset references.
  */
 
 const fs = require('fs');
 const path = require('path');
-const yaml = require('js-yaml');
+const { createClient } = require('@sanity/client');
+const imageUrlBuilder = require('@sanity/image-url');
 
 const ROOT = path.resolve(__dirname);
-const CONTENT_DIR = path.join(ROOT, 'content');
 const SRC_DIR = path.join(ROOT, 'src');
 const OUT_INDEX = path.join(ROOT, 'index.html');
 
-function loadYaml(filename) {
-  const filepath = path.join(CONTENT_DIR, filename);
-  const raw = fs.readFileSync(filepath, 'utf8');
-  return yaml.load(raw);
+const client = createClient({
+  projectId: process.env.SANITY_PROJECT_ID || 'ycekroyx',
+  dataset: process.env.SANITY_DATASET || 'production',
+  useCdn: false,
+  apiVersion: '2024-01-01',
+  token: process.env.SANITY_TOKEN, // optional, for draft content
+});
+
+const builder = imageUrlBuilder(client);
+function urlFor(source) {
+  return builder.image(source).url();
+}
+
+// Resolves a Sanity image asset reference to a URL, or returns '' if absent.
+function resolveImageUrl(imageField) {
+  return imageField ? escapeHtml(urlFor(imageField)) : '';
 }
 
 function escapeHtml(s) {
@@ -108,10 +127,11 @@ function buildDoctorsItems(doctors) {
       const descHtml = doc.description
         ? `<p>${escapeHtml(doc.description)}</p>`
         : '';
+      const imageUrl = resolveImageUrl(doc.image);
       return `
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="${delay}">
             <div class="team-member d-flex align-items-start">
-              <div class="pic"><img src="${escapeHtml(doc.image)}" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="${imageUrl}" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>${escapeHtml(doc.name)}</h4>
                 <span>${escapeHtml(doc.role)}</span>
@@ -127,11 +147,13 @@ function buildTestimonialsItems(testimonials) {
   if (!testimonials || !testimonials.length) return '';
   return testimonials
     .map(
-      (t) => `
+      (t) => {
+        const imageUrl = resolveImageUrl(t.image);
+        return `
                 <div class="swiper-slide">
                   <div class="testimonial-item">
                     <div class="d-flex">
-                      <img src="${escapeHtml(t.image)}" class="testimonial-img flex-shrink-0" alt="">
+                      <img src="${imageUrl}" class="testimonial-img flex-shrink-0" alt="">
                       <div>
                         <h3>${escapeHtml(t.author)}</h3>
                         <h4>${escapeHtml(t.role)}</h4>
@@ -146,7 +168,8 @@ function buildTestimonialsItems(testimonials) {
                       <i class="bi bi-quote quote-icon-right"></i>
                     </p>
                   </div>
-                </div><!-- End testimonial item -->`
+                </div><!-- End testimonial item -->`;
+      }
     )
     .join('\n');
 }
@@ -155,14 +178,17 @@ function buildGalleryImages(images) {
   if (!images || !images.length) return '';
   return images
     .map(
-      (img) => `
+      (img) => {
+        const imageUrl = resolveImageUrl(img.path);
+        return `
           <div class="col-lg-3 col-md-4">
             <div class="gallery-item">
-              <a href="${escapeHtml(img.path)}" class="glightbox" data-gallery="images-gallery">
-                <img src="${escapeHtml(img.path)}" alt="${escapeHtml(img.caption || '')}" class="img-fluid">
+              <a href="${imageUrl}" class="glightbox" data-gallery="images-gallery">
+                <img src="${imageUrl}" alt="${escapeHtml(img.caption || '')}" class="img-fluid">
               </a>
             </div>
-          </div><!-- End Gallery Item -->`
+          </div><!-- End Gallery Item -->`;
+      }
     )
     .join('\n');
 }
@@ -174,61 +200,83 @@ function buildFooterLinks(links) {
     .join('\n            ');
 }
 
-function main() {
-  const site = loadYaml('site.yml');
-  const servicesData = loadYaml('services.yml');
-  const doctorsData = loadYaml('doctors.yml');
-  const testimonialsData = loadYaml('testimonials.yml');
-  const galleryData = loadYaml('gallery.yml');
+async function main() {
+  const site = await client.fetch(`*[_type == "site"][0]`);
+  const servicesData = await client.fetch(`*[_type == "servicesPage"][0]`);
+  const doctorsData = await client.fetch(`*[_type == "doctorsPage"][0]`);
+  const testimonialsData = await client.fetch(`*[_type == "testimonialsPage"][0]`);
+  const galleryData = await client.fetch(`*[_type == "galleryPage"][0]`);
 
-  const hero = site.hero || {};
-  const about = site.about || {};
-  const contact = site.contact || {};
-  const footer = site.footer || {};
+  // Fail fast so CI/Netlify does not deploy an empty site if dataset access is missing.
+  const missingDocs = [];
+  if (!site) missingDocs.push('site');
+  if (!servicesData) missingDocs.push('servicesPage');
+  if (!doctorsData) missingDocs.push('doctorsPage');
+  if (!testimonialsData) missingDocs.push('testimonialsPage');
+  if (!galleryData) missingDocs.push('galleryPage');
+
+  if (missingDocs.length) {
+    const tokenSet = Boolean(process.env.SANITY_TOKEN);
+    throw new Error(
+      [
+        `Missing required Sanity documents: ${missingDocs.join(', ')}`,
+        `Using projectId=${client.config().projectId}, dataset=${client.config().dataset}, tokenSet=${tokenSet}`,
+        'If your dataset is private, set SANITY_TOKEN (read token) in local env and Netlify env for all deploy contexts.',
+      ].join('\n')
+    );
+  }
+
+  const hero = (site && site.hero) || {};
+  const about = (site && site.about) || {};
+  const contact = (site && site.contact) || {};
+  const footer = (site && site.footer) || {};
 
   const heroWhyBody = (hero.whyBody || '').replace(/\n/g, ' ');
   const aboutIntro = (about.intro || '').replace(/\n/g, ' ');
   const footerAddress = nl2br(footer.address || '');
 
-  const navItems = buildNavItems(site.nav);
+  const heroImageUrl = resolveImageUrl(hero.heroImage);
+  const aboutImageUrl = resolveImageUrl(about.image);
+
+  const navItems = buildNavItems(site && site.nav);
   const iconBoxes = buildIconBoxes(hero.iconBoxes);
   const aboutItems = buildAboutItems(about.items);
-  const servicesItems = buildServicesItems(servicesData.services);
-  const doctorsItems = buildDoctorsItems(doctorsData.doctors);
-  const testimonialsItems = buildTestimonialsItems(testimonialsData.testimonials);
-  const galleryImages = buildGalleryImages(galleryData.images);
+  const servicesItems = buildServicesItems(servicesData && servicesData.services);
+  const doctorsItems = buildDoctorsItems(doctorsData && doctorsData.doctors);
+  const testimonialsItems = buildTestimonialsItems(testimonialsData && testimonialsData.testimonials);
+  const galleryImages = buildGalleryImages(galleryData && galleryData.images);
   const footerLinks1 = buildFooterLinks(footer.links1);
   const footerLinks2 = buildFooterLinks(footer.links2);
 
   let template = fs.readFileSync(path.join(SRC_DIR, 'index.html'), 'utf8');
 
   const replacements = [
-    ['__SITE_TITLE__', site.title || ''],
-    ['__SITE_PHONE1__', site.phone1 || ''],
-    ['__SITE_PHONE2__', site.phone2 || ''],
-    ['__SITE_SITENAME__', site.sitename || ''],
+    ['__SITE_TITLE__', (site && site.title) || ''],
+    ['__SITE_PHONE1__', (site && site.phone1) || ''],
+    ['__SITE_PHONE2__', (site && site.phone2) || ''],
+    ['__SITE_SITENAME__', (site && site.sitename) || ''],
     ['__NAV_ITEMS__', navItems],
-    ['__HERO_IMAGE__', hero.heroImage || ''],
+    ['__HERO_IMAGE__', heroImageUrl],
     ['__HERO_HEADLINE__', hero.headline || ''],
     ['__HERO_SUBTITLE__', hero.subtitle || ''],
     ['__HERO_WHY_TITLE__', hero.whyTitle || ''],
     ['__HERO_WHY_BODY__', heroWhyBody],
     ['__HERO_LEARN_MORE__', hero.learnMoreLabel || 'Learn More'],
     ['__ICON_BOXES__', iconBoxes],
-    ['__ABOUT_IMAGE__', about.image || ''],
+    ['__ABOUT_IMAGE__', aboutImageUrl],
     ['__ABOUT_TITLE__', about.title || ''],
     ['__ABOUT_INTRO__', aboutIntro],
     ['__ABOUT_ITEMS__', aboutItems],
-    ['__SERVICES_TITLE__', servicesData.title || ''],
-    ['__SERVICES_SUBTITLE__', servicesData.subtitle || ''],
+    ['__SERVICES_TITLE__', (servicesData && servicesData.title) || ''],
+    ['__SERVICES_SUBTITLE__', (servicesData && servicesData.subtitle) || ''],
     ['__SERVICES_ITEMS__', servicesItems],
-    ['__DOCTORS_TITLE__', doctorsData.title || ''],
+    ['__DOCTORS_TITLE__', (doctorsData && doctorsData.title) || ''],
     ['__DOCTORS_ITEMS__', doctorsItems],
-    ['__TESTIMONIALS_TITLE__', testimonialsData.title || ''],
-    ['__TESTIMONIALS_INTRO__', (testimonialsData.intro || '').replace(/\n/g, ' ')],
+    ['__TESTIMONIALS_TITLE__', (testimonialsData && testimonialsData.title) || ''],
+    ['__TESTIMONIALS_INTRO__', ((testimonialsData && testimonialsData.intro) || '').replace(/\n/g, ' ')],
     ['__TESTIMONIALS_ITEMS__', testimonialsItems],
-    ['__GALLERY_TITLE__', galleryData.title || ''],
-    ['__GALLERY_DESCRIPTION__', (galleryData.description || '').replace(/\n/g, ' ')],
+    ['__GALLERY_TITLE__', (galleryData && galleryData.title) || ''],
+    ['__GALLERY_DESCRIPTION__', ((galleryData && galleryData.description) || '').replace(/\n/g, ' ')],
     ['__GALLERY_IMAGES__', galleryImages],
     ['__CONTACT_TITLE__', contact.title || ''],
     ['__CONTACT_DESCRIPTION__', (contact.description || '').replace(/\n/g, ' ')],
@@ -252,7 +300,7 @@ function main() {
   fs.writeFileSync(OUT_INDEX, template, 'utf8');
   console.log('Built index.html');
 
-  const formEmail = site.formReceivingEmail;
+  const formEmail = site && site.formReceivingEmail;
   if (formEmail) {
     const contactPhp = path.join(ROOT, 'forms', 'contact.php');
     const appointmentPhp = path.join(ROOT, 'forms', 'appointment.php');
@@ -270,4 +318,7 @@ function main() {
   }
 }
 
-main();
+main().catch((err) => {
+  console.error('Build failed:', err);
+  process.exit(1);
+});

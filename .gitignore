@@ -1,1 +1,5 @@
 node_modules/
+sanity/node_modules/
+sanity/dist/
+.env
+.env.local
